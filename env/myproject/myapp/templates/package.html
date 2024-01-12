@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    // Just messing around with the grid to learn more about it.
+// Main variables
+
+// Colors
+$beige:                                  #FBF7EB !default;
+$tan:                                    #D4C6A9 !default;
+$orange:                                 #FD9E40 !default;
+$blue:                                   #74D5C1 !default;
+$gray-dark:                              #292b2c !default;
+$gray-light:                             #636c72 !default;
+$white:                                  #FFF    !default;
+
+// Body
+//
+$body-bg:                              $white     !default;
+$body-color:                           $gray-dark !default;
+
+// No font family is set as default
+
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-md:   .995rem !default;
+$font-size-sm:   .875rem !default;
+
+// Font weights
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
+
+// Font weight and line heigh
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: 1.5 !default;
+$font-letter-spacing: 0.02rem !default;
+
+// Font sizes for headers
+$font-size-h1: 2.5rem !default;
+$font-size-h2: 2rem !default;
+$font-size-h3: 1.75rem !default;
+$font-size-h4: 1.5rem !default;
+$font-size-h5: 1.25rem !default;
+$font-size-h6: 1rem !default;
+
+// Headings defaults
+$headings-margin-bottom: 1rem !default;
+$headings-font-family:   inherit !default;
+$headings-font-weight:   500 !default;
+$headings-line-height:   1.5 !default;
+$headings-color:         inherit !default;
+
+// Main styles
+* {
+     margin: 0;
+     padding: 0;
+     outline: none;
+     box-sizing: border-box;
+
+     &::after, &::before {
+          box-sizing: border-box;
+     }
+}
+
+h1 {
+     font-size: $font-size-h1;
+}
+
+h2 {
+     font-size: $font-size-h2;
+}
+
+h3 {
+     font-size: $font-size-h3;
+}
+
+h4 {
+     font-size: $font-size-h4;
+}
+
+h5 {
+     font-size: $font-size-h5;
+}
+
+h6 {
+     font-size: $font-size-h6;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+     font-weight: $headings-font-weight;
+     font-family: $headings-font-family;
+     margin-bottom: $headings-margin-bottom;
+     line-height: $headings-line-height;
+     color: $headings-color;
+}
+
+
+.btn-primary {
+     cursor: pointer;
+     color: $white;
+     padding: 0.5rem 1.5rem;
+     margin-top: 1rem;
+     text-decoration: none;
+     background-color: $orange;
+     border-radius: 2px;
+     border: 0;
+}
+
+
+body {
+     font-size: $font-size-sm;
+     letter-spacing: $font-letter-spacing;
+     line-height: $headings-line-height;
+     font-family: 'Lato', sans-serif;
+     background: $beige;
+     color: $body-color;
+
+     @media (min-width: 576px) {
+          font-size: $font-size-md;
+     }
+
+     @media (min-width: 768px) {
+          font-size: $font-size-base;
+     }
+}
+
+
+.header-container {
+     width: 100%;
+     background: url(https://images.pexels.com/photos/238622/pexels-photo-238622.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center center;
+     position: relative;
+     z-index: 1;
+
+     &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+          z-index: -1;
+     }
+
+     .header-grid {
+          min-height: 557px;
+          color: $white;
+          width: 960px;
+          max-width: 100%;
+          margin: 0 auto;
+          padding: 0 1rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 500px;
+
+          a {
+               text-decoration: none;
+               color: $white;
+          }
+
+          .navigation {
+               display: grid;
+               grid-template-columns: 1fr 1fr;
+               min-height: 60px;
+               grid-column: 1 / -1;
+               position: relative;
+               align-items: end;
+
+               &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: rgba(255, 255, 255, 0.5);
+               }
+
+
+               .nav-brand {
+                    font-weight: 300;
+                    margin: 0;
+                    grid-column: 1 / -1;
+                    justify-self: center;
+
+                    @media (min-width: 768px) {
+                         grid-column: auto;
+                         justify-self: auto;
+                    }
+               }
+
+               nav {
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+                    justify-self: center;
+                    grid-column: 1 / -1;
+
+                    @media (min-width: 768px) {
+                         grid-column: auto;
+                         justify-self: end;
+                    }
+
+                    ul {
+                         display: flex;
+                         align-items: center;
+                         justify-content: center;
+                         list-style-type: none;
+                         flex-wrap: wrap;
+                         @media (min-width: 390px) {
+                              flex-wrap: nowrap;
+                         }
+
+                         li {
+                              padding: 0.5rem;
+
+                              &:last-child {
+                                   padding-right: 0;
+
+                              }
+                         }
+                    }
+               }
+          }
+
+          .latest-deals {
+               grid-column: 1 / -1;
+               max-width: 540px;
+               align-self: center;
+               padding: 2.5rem 1rem;
+               background: transparentize($beige, 0.6);
+               padding: 1rem 0.5rem;
+               border: 1px solid #c5cacc;
+               border-radius: 2px;
+
+               .search-form {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+
+                    input {
+                         width: 98%;
+                         padding: 0.5rem;
+                         margin-top: 0.5rem;
+
+                         &:nth-child(even) {
+                              justify-self: end;
+                         }
+
+                    }
+
+                    .search-button {
+                         display: block;
+                         width: 100%;
+                         background: $orange;
+                         color: $white;
+                         margin-top: 1rem;
+                         padding: 0.8rem 0;
+                         border: 0;
+                         font-size: 1.1rem;
+                         grid-column: 1 / -1;
+                         cursor: pointer;
+                    }
+               }
+          }
+     }
+}
+
+
+.special-deals {
+     text-align: center;
+     padding: 2rem 0;
+     width: 960px;
+     max-width: 100%;
+     margin: 0 auto;
+     padding: 0 1rem;
+
+     .special-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          grid-gap: 1.5rem;
+
+          .features {
+               grid-column: auto / span 12;
+               height: 250px;
+               width: 100%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               flex-direction: column;
+               color: $white;
+               position: relative;
+               z-index: 1;
+
+               @media (min-width: 576px) {
+                    grid-column: auto / span 6;
+               }
+               @media (min-width: 860px) {
+                    grid-column: auto / span 4;
+               }
+
+               h3 {
+                    font-size: 1.5rem;
+               }
+
+               .img-absolute {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+               }
+          }
+     }
+}
+
+.unique-travel {
+     width: 960px;
+     max-width: 100%;
+     padding: 0 1rem;
+     margin: 0 auto;
+     text-align: center;
+
+     h3 {
+          font-size: 1.1rem;
+          margin-top: 0;
+          color: $gray-light;
+     }
+
+     a {
+          display: inline-block;
+          margin: 1rem;
+          text-decoration: none;
+          color: $gray-light;
+     }
+
+     .active {
+          color: $blue;
+     }
+
+     .travel-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: minmax(320px, 1fr);
+          grid-template-areas:
+                              "a a a"
+                              "b b b"
+                              "c c d"
+                              "e e e"
+                              "f g g"
+                              "h h h"
+                              "i j j";
+          grid-gap: 8px;
+          margin-top: 1rem;
+
+          @media (min-width: 576px) {
+               grid-template-areas:
+                              "a a a"
+                              "b b c"
+                              "d e c"
+                              "f g g"
+                              "h i j";
+               grid-template-rows: 500px 400px 320px 250px 250px;
+          }
+
+          a {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               margin: 0;
+               max-width: 100%;
+          }
+
+          h2 {
+               color: $white;
+               font-size: 2rem;
+               font-weight: 100;
+          }
+
+          .las-vegas {
+               background: url(https://static.pexels.com/photos/6534/holiday-vacation-hotel-luxury.jpg);
+               background-repeat: no-repeat;
+               background-size: cover;
+               background-position: center center;
+               border-radius: 5px;
+               grid-area: a;
+          }
+
+          .san-francisco {
+               @extend .las-vegas;
+               background: url(https://images.pexels.com/photos/7653/pexels-photo.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: center 10%;
+               grid-area: b;
+          }
+
+          .new-york {
+               @extend .san-francisco;
+               background: url(https://images.pexels.com/photos/374710/pexels-photo-374710.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: 60% center;
+               grid-area: c;
+          }
+
+          .boston {
+               @extend .san-francisco;
+               background: url(https://images.pexels.com/photos/169677/pexels-photo-169677.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: center center;
+               grid-area: d;
+          }
+
+          .san-juan {
+               @extend .new-york;
+               background: url(https://images.pexels.com/photos/60015/cinque-terre-italy-rocks-sea-60015.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: center 40%;
+               grid-area: e;
+          }
+
+          .punta-cana {
+               @extend .new-york;
+               background: url(https://images.pexels.com/photos/176400/pexels-photo-176400.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: 20% 80%;
+               height: 250px;
+               grid-area: f;
+          }
+
+          .miami {
+               @extend .punta-cana;
+               background: url(https://images.pexels.com/photos/179124/pexels-photo-179124.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: 10% center;
+               grid-area: g;
+          }
+
+          .hawaii {
+               @extend .punta-cana;
+               background: url(https://images.pexels.com/photos/279574/pexels-photo-279574.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: 40% 90%;
+               grid-area: h;
+          }
+
+          .grand-canyon {
+               @extend .punta-cana;
+               background: url(https://images.pexels.com/photos/220322/pexels-photo-220322.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               background-position: center 10%;
+               grid-area: i;
+          }
+
+          .yellowstone {
+               @extend .punta-cana;
+               background: url(https://images.pexels.com/photos/261397/pexels-photo-261397.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+               grid-area: j;
+          }
+     }
+}
+
+.travel-container {
+     margin-top: 4rem;
+     padding: 7rem 0;
+     background: url(https://images.pexels.com/photos/98855/pexels-photo-98855.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
+     background-repeat: no-repeat;
+     background-position: center center;
+     background-size: cover;
+     color: $white;
+     font-weight: 100;
+
+     .travel-points {
+          width: 960px;
+          padding: 0 1rem;
+          max-width: 100%;
+          margin: 0 auto;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+
+          h2 {
+               max-width: 415px;
+          }
+
+          ul {
+               padding-left: 1.5rem;
+               max-width: 415px;
+
+               li {
+                    margin: 1rem 0;
+               }
+          }
+     }
+}
+
+
+.footer-container {
+     padding-top: 4rem;
+     background: $gray-dark;
+     color: white;
+
+     a {
+          color: white;
+          text-decoration: none;
+     }
+
+     .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          grid-gap: 1rem;
+          width: 960px;
+          padding: 0 1rem;
+          max-width: 100%;
+          margin: 0 auto;
+
+          div {
+               grid-column: auto / span 6;
+
+               @media (min-width: 576px) {
+                    grid-column: auto / span 3;
+               }
+
+               h3 {
+                    font-size: 1.1rem;
+                    font-weight: 300;
+               }
+
+               ul {
+                    list-style: none;
+
+                    li a {
+                         font-weight: 100;
+                    }
+               }
+          }
+
+
+          .closing {
+               grid-column: auto / span 12;
+               margin-top: 2rem;
+               padding: 0.5rem 0;
+               position: relative;
+
+               &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: rgba(255, 255, 255, 0.5);
+               }
+
+               em {
+                    font: 0.5rem;
+                    font-weight: 100;
+               }
+
+          }
+
+          .newsletter {
+               h2 {
+                    line-height: 1;
+               }
+
+
+               .subscribe-form {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+                    flex-direction: column;
+
+                    input {
+                         width: 98%;
+                         padding: 0.5rem;
+                         margin-top: 0.5rem;
+                    }
+
+
+                    .btn-primary {
+                         font-weight: 100;
+                         padding: 0.5rem 1.8rem;
+                         font-size: 0.9rem;
+                    }
+               }
+          }
+     }
+}
+</style>
+<body>
+<div class="header-container">
+ <div class="header-grid">
+  <div class="navigation">
+   <h2 class="nav-brand"><a href="#">Travel Destination</a></h2>
+   <nav>
+    <ul>
+     <li><a href="#">Hotels</a></li>
+     <li><a href="#">Flights</a></li>
+     <li><a href="#">Cars</a></li>
+     <li><a href="#">Specials</a></li>
+     <li><a href="#">Rentals</a></li>
+     <li><a href="#">Cruises</a></li>
+    </ul>
+   </nav>
+  </div>
+  <div class="latest-deals">
+   <h1>Find the best deals</h1>
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+   <form class="search-form" action="#">
+    <input type="text" placeholder="From">
+    <input type="text" placeholder="To">
+    <input type="text" placeholder="Fri 8/25">
+    <input type="text" placeholder="Fri 8/25">
+    <button class="search-button" type="submit" class="btn btn-primary">Search</button>
+   </form>
+  </div>
+ </div>
+</div>
+
+<section class="special-deals">
+ <h2>Get the special deals</h2>
+ <div class="special-grid">
+  <div class="features">
+   <em>Stateside</em>
+   <h3>Get the lastest deals in the states.</h3>
+   <a href="#" class="btn-primary">Find</a>
+   <img class="img-absolute" src="https://images.pexels.com/photos/105234/pexels-photo-105234.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb" alt="Road">
+  </div>
+  <div class="features">
+   <em>Caribbean</em>
+   <h3>Explore the southern waters.</h3>
+   <a href="#" class="btn-primary">Explore</a>
+   <img class="img-absolute" src="https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb" alt="Caribbean Waters">
+  </div>
+  <div class="features">
+   <em>European</em>
+   <h3>Travel to amazing destinations.</h3>
+   <a href="#" class="btn-primary">Search</a>
+   <img class="img-absolute" src="https://images.pexels.com/photos/408503/pexels-photo-408503.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb" alt="European Map">
+  </div>
+ </div>
+</section>
+
+<main class="unique-travel">
+ <h2>Unleash the explorer in you...</h2>
+ <h3>Visit amazing places</h3>
+ <a href="#">Worlwide</a>
+ <a class="active" href="#">North America</a>
+ <a href="#">United States</a>
+ <a href="#">Europe</a>
+
+ <div class="travel-grid">
+  <a class="las-vegas" href="#">
+   <h2>Las Vegas</h2>
+  </a>
+  <a class="san-francisco" href="#">
+   <h2>San Francisco</h2>
+  </a>
+  <a class="new-york" href="#">
+   <h2>New York</h2>
+  </a>
+  <a class="boston" href="#">
+   <h2>Boston</h2>
+  </a>
+  <a class="san-juan" href="#">
+   <h2>San Juan</h2>
+  </a>
+  <a class="punta-cana" href="#">
+   <h2>Punta Ca&#241;a</h2>
+  </a>
+  <a class="miami" href="#">
+   <h2>Miami</h2>
+  </a>
+  <a class="hawaii" href="#">
+   <h2>Hawaii</h2>
+  </a>
+  <a class="grand-canyon" href="#">
+   <h2>Grand Canyon</h2>
+  </a>
+  <a class="yellowstone" href="#">
+   <h2>Yellowstone</h2>
+  </a>
+ </div>
+</main>
+
+<div class="travel-container">
+ <div class="travel-points">
+  <h2>Find the best travel package for you...</h2>
+  <ul>
+   <li>
+    <p>Obcaecati a soluta voluptate voluptatem, repellendus.</p>
+   </li>
+   <li>
+    <p>Obcaecati a soluta voluptate voluptatem, repellendus.</p>
+   </li>
+   <li>
+    <p>Obcaecati a soluta voluptate voluptatem, repellendus.</p>
+   </li>
+  </ul>
+  <a href="#" class="btn-primary">Search Deals</a>
+ </div>
+</div>
+
+<footer class="footer-container">
+ <div class="footer-grid">
+  <div class="company">
+   <h3>Company</h3>
+   <ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Careers</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Deals</a></li>
+   </ul>
+  </div>
+  <div class="contact">
+   <h3>Contact</h3>
+   <ul>
+    <li><a href="#">Help</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="#">Partners</a></li>
+    <li><a href="#">Support</a></li>
+   </ul>
+  </div>
+  <div class="More">
+   <h3>More</h3>
+   <ul>
+    <li><a href="#">Help</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="#">Partners</a></li>
+    <li><a href="#">Support</a></li>
+   </ul>
+  </div>
+  <div class="newsletter">
+   <h2>Get the lastest updates...</h2>
+   <form class="subscribe-form" action="#">
+    <input type="text" placeholder="Email"></input>
+    <button class="btn-primary" type="button" name="button">Subscribe</button>
+   </form>
+  </div>
+  <div class="closing">
+   <em>Just messing around 2017.</em>
+  </div>
+ </div>
+</footer>
+
+
+</body>
+</html>
